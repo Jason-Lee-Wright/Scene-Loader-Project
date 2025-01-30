@@ -9,11 +9,11 @@ public class TriggerActions : MonoBehaviour
     {
         if (Other.gameObject.CompareTag("Player"))
         {
-            if (gameObject.CompareTag("left"))
+            if (gameObject.tag == "Left")
             {
                 ActionEvents.Goingleft.Invoke();
             }
-            else if (gameObject.CompareTag("Right"))
+            else if (gameObject.tag == "Right")
             {
                 ActionEvents.Goingright.Invoke();
             }

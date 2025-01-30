@@ -10,45 +10,34 @@ public class LevelManager : MonoBehaviour
     public GameObject PlayMe;
     public GameObject Spawnpoint;
 
-    private void Update()
+    void GoLeft()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SceneManager.LoadScene(1);
-            //FindSpawn();
-            //Spawnpoint = GameObject.Find("SpawnpointGamePlay");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SceneManager.LoadScene(0);
-            //FindSpawn();
-            //Spawnpoint = GameObject.Find("SpawnpointMenu");
-        }
+        Spawnpoint = GameObject.Find("SpawnPoint");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    /*void FindSpawn()
+    void GoRight()
     {
-        Spawnpoint = GameObject.Find("Spawnpoint");
-        PlayMe.transform.position = Spawnpoint.transform.position;
-    }*/
+        Spawnpoint = GameObject.Find("SpawnPoint1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        ActionEvents.Goingright += GoRight;
+        ActionEvents.Goingleft += GoLeft;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(mode);
-    }
-
-    void Start()
-    {
-
+        PlayMe.transform.position = Spawnpoint.transform.position;
     }
 
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        ActionEvents.Goingright -= GoRight;
+        ActionEvents.Goingleft -= GoLeft;
     }
 }
