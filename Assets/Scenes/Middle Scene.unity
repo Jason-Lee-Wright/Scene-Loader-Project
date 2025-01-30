@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395e0b2fb2b693e469e15928aaeca84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnPoint: HousePath
+  SceneLoad: Left Scene
 --- !u!1 &74555576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3677,7 +3679,7 @@ GameObject:
   - component: {fileID: 299519635}
   - component: {fileID: 299519633}
   m_Layer: 0
-  m_Name: SpawnPoint1
+  m_Name: Left Narrow Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4966,6 +4968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395e0b2fb2b693e469e15928aaeca84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnPoint: Docs
+  SceneLoad: Right Scene
 --- !u!1 &1515108733
 GameObject:
   m_ObjectHideFlags: 0
@@ -14093,7 +14097,7 @@ GameObject:
   - component: {fileID: 1760179494}
   - component: {fileID: 1760179492}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: DocsEnter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

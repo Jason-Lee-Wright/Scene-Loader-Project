@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,38 +11,27 @@ public class LevelManager : MonoBehaviour
     public GameObject PlayMe;
     public GameObject Spawnpoint;
 
-    private static string lastDirection;
+    private string SpawnName;
 
-    void GoLeft()
-    {
-        lastDirection = "Left";
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-    }
-
-    void GoRight()
-    {
-        lastDirection = "Right";
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
 
     void OnEnable()
     {
+        ActionEvents.TriggerScene += Triggered;
+    }
+
+    private void Triggered(string Spawn, string Scene)
+    {
+
         SceneManager.sceneLoaded += OnSceneLoaded;
-        ActionEvents.Goingright += GoRight;
-        ActionEvents.Goingleft += GoLeft;
+
+        SpawnName = Spawn;
+
+        SceneManager.LoadScene(Scene);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (lastDirection == "Left")
-        {
-            Spawnpoint = GameObject.Find("SpawnPoint"); // Left entry
-        }
-        else
-        {
-            Spawnpoint = GameObject.Find("SpawnPoint1"); // Right entry
-        }
-
+        Spawnpoint = GameObject.Find(SpawnName);
 
         PlayMe.transform.position = Spawnpoint.transform.position;
     }
@@ -49,7 +39,5 @@ public class LevelManager : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        ActionEvents.Goingright -= GoRight;
-        ActionEvents.Goingleft -= GoLeft;
     }
 }
