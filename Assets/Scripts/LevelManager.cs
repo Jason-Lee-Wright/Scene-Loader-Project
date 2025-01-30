@@ -10,15 +10,17 @@ public class LevelManager : MonoBehaviour
     public GameObject PlayMe;
     public GameObject Spawnpoint;
 
+    private static string lastDirection;
+
     void GoLeft()
     {
-        Spawnpoint = GameObject.Find("SpawnPoint");
+        lastDirection = "Left";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     void GoRight()
     {
-        Spawnpoint = GameObject.Find("SpawnPoint1");
+        lastDirection = "Right";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -31,6 +33,16 @@ public class LevelManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (lastDirection == "Left")
+        {
+            Spawnpoint = GameObject.Find("SpawnPoint"); // Left entry
+        }
+        else
+        {
+            Spawnpoint = GameObject.Find("SpawnPoint1"); // Right entry
+        }
+
+
         PlayMe.transform.position = Spawnpoint.transform.position;
     }
 
